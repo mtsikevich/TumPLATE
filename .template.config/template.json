@@ -1,0 +1,25 @@
+﻿{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Tumelo Motsikelane",
+  "classifications": ["Api", "DDD"],
+  "identity": "TumPLATE",
+  "name": "My Turf API",
+  "description": "My Turf API template",
+  "shortName": "myturfapi",
+  "sourceName": "TumPLATE",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "true",
+          "exclude": [".idea/**"]
+        }
+      ]
+    }
+  ]
+}
