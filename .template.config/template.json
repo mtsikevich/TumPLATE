@@ -17,7 +17,7 @@
       "modifiers": [
         {
           "condition": "true",
-          "exclude": [".idea/**"]
+          "exclude": [".idea/**",".git/**"]
         }
       ]
     }
