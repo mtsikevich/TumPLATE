@@ -1,18 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
+    
     <ItemGroup>
-        <ProjectReference Include="..\TumPLATE.Domain\TumPLATE.Domain.csproj" />
-        <ProjectReference Include="..\TumPLATE.Infrastructure\TumPLATE.Infrastructure.csproj" />
+      <PackageReference Include="Hangfire.Core" Version="1.7.32" />
+      <PackageReference Include="Hangfire.AspNetCore" Version="1.7.32" />
+      <PackageReference Include="Hangfire.Dashboard.BasicAuthorization" Version="1.0.2" />
+      <PackageReference Include="Hangfire.MemoryStorage" Version="1.7.0" />
+      <PackageReference Include="Hangfire.SqlServer" Version="1.7.32" />
+      <PackageReference Include="MediatR" Version="11.0.0" />
+      <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" Version="11.0.0" />
+      <Folder Include="Features\Tree\Commands" />
+      <Folder Include="Features\Tree\Queries\GetFruit" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\TumPLATE.Domain\TumPLATE.Domain.csproj" />
+      <ProjectReference Include="..\TumPLATE.Infrastructure\TumPLATE.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

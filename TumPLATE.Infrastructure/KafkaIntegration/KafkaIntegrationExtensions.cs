@@ -6,6 +6,6 @@ public static class KafkaIntegrationExtensions
 {
     public static void AddKafkaIntegration(this IServiceCollection services)
     {
-        services.AddSingleton<IKafkaIntegration, KafkaHttpApiIntegration>();
+        services.AddHttpClient<IKafkaIntegration, KafkaHttpApiIntegration>();
     }
 }

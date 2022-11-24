@@ -1,18 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TumPLATE.Api", "TumPLATE.Api\TumPLATE.Api.csproj", "{5F8F598D-05F9-4499-8111-90C941FAD165}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TumPLATE.Application", "TumPLATE.Application\TumPLATE.Application.csproj", "{32C5ACB6-05F1-43E2-8C14-3045655504B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TumPLATE.Application", "TumPLATE.Application\TumPLATE.Application.csproj", "{32C5ACB6-05F1-43E2-8C14-3045655504B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TumPLATE.Domain", "TumPLATE.Domain\TumPLATE.Domain.csproj", "{2C9F1936-D108-4B4D-AB66-73F6785F96DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TumPLATE.Domain", "TumPLATE.Domain\TumPLATE.Domain.csproj", "{2C9F1936-D108-4B4D-AB66-73F6785F96DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TumPLATE.Infrastructure", "TumPLATE.Infrastructure\TumPLATE.Infrastructure.csproj", "{D0315EB9-BD8C-49DC-B1E6-1EEF250C45E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TumPLATE.Infrastructure", "TumPLATE.Infrastructure\TumPLATE.Infrastructure.csproj", "{D0315EB9-BD8C-49DC-B1E6-1EEF250C45E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TumPLATE.Tests.Unit", "TumPLATE.Tests.Unit\TumPLATE.Tests.Unit.csproj", "{C843E863-D215-4334-91B1-42B14F2567FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TumPLATE.Tests.Unit", "TumPLATE.Tests.Unit\TumPLATE.Tests.Unit.csproj", "{C843E863-D215-4334-91B1-42B14F2567FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TumPLATE.Tests.Api", "TumPLATE.Tests.Api\TumPLATE.Tests.Api.csproj", "{A00C7519-4E54-4DB9-ACFA-E7CEC7B436B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TumPLATE.Tests.Api", "TumPLATE.Tests.Api\TumPLATE.Tests.Api.csproj", "{A00C7519-4E54-4DB9-ACFA-E7CEC7B436B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TumPLATE.Tests.Behaviour", "TumPLATE.Tests.Behaviour\TumPLATE.Tests.Behaviour.csproj", "{B729AF15-31EA-43E6-BDCA-4640CB95BA29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TumPLATE.Tests.Behaviour", "TumPLATE.Tests.Behaviour\TumPLATE.Tests.Behaviour.csproj", "{B729AF15-31EA-43E6-BDCA-4640CB95BA29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TumPLATE.Api", "TumPLATE.Api\TumPLATE.Api.csproj", "{E320115F-1E95-49DC-AF44-EABD486A2D99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5F8F598D-05F9-4499-8111-90C941FAD165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F8F598D-05F9-4499-8111-90C941FAD165}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F8F598D-05F9-4499-8111-90C941FAD165}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F8F598D-05F9-4499-8111-90C941FAD165}.Release|Any CPU.Build.0 = Release|Any CPU
 		{32C5ACB6-05F1-43E2-8C14-3045655504B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{32C5ACB6-05F1-43E2-8C14-3045655504B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32C5ACB6-05F1-43E2-8C14-3045655504B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,5 +47,15 @@ Global
 		{B729AF15-31EA-43E6-BDCA-4640CB95BA29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B729AF15-31EA-43E6-BDCA-4640CB95BA29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B729AF15-31EA-43E6-BDCA-4640CB95BA29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E320115F-1E95-49DC-AF44-EABD486A2D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E320115F-1E95-49DC-AF44-EABD486A2D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E320115F-1E95-49DC-AF44-EABD486A2D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E320115F-1E95-49DC-AF44-EABD486A2D99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D7164D5-ED6F-494C-8114-E55C03F8EB1B}
 	EndGlobalSection
 EndGlobal
