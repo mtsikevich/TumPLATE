@@ -1,11 +1,11 @@
 ﻿{
   "$schema": "http://json.schemastore.org/template",
   "author": "Tumelo Motsikelane",
-  "classifications": ["Api", "DDD"],
+  "classifications": ["Api"],
   "identity": "TumPLATE",
-  "name": "My Turf API",
-  "description": "My Turf API template",
-  "shortName": "myturfapi",
+  "name": "Tumelo API",
+  "description": "tumelo mtsikevich",
+  "shortName": "tumza",
   "sourceName": "TumPLATE",
   "tags": {
     "language": "C#",
@@ -17,7 +17,7 @@
       "modifiers": [
         {
           "condition": "true",
-          "exclude": [".idea/**",".git/**"]
+          "exclude": [".idea/**",".git/**",".vs/**"]
         }
       ]
     }
