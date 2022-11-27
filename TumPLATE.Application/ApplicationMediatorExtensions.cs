@@ -9,6 +9,7 @@ namespace TumPLATE.Application
         public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
+            
         }
     }
 }
