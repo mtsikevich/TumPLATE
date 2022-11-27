@@ -1,0 +1,14 @@
+# initialize local development secrets
+dotnet user-secrets init --project ".\TumPLATE.Api\"
+
+# set azure-app-configuration connection-string 
+dotnet user-secrets set "ConnectionStrings:AzureAppConfiguration" "" --project ".\TumPLATE.Api\"
+
+# start application on "Development" environment
+dotnet run --urls=http://localhost:5001 --project .\TumPLATE.Api\ --environment "Development"
+
+# start application on "SIT"
+dotnet run --urls=http://localhost:5002 --project .\TumPLATE.Api\ --environment "SIT"
+
+# start application on "Production" environment
+dotnet run --urls=http://localhost:5003 --project .\TumPLATE.Api\ --environment "Production"
