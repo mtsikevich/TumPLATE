@@ -1,4 +1,3 @@
-using Azure.Identity;
 using Hangfire;
 using MediatR;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
@@ -12,27 +11,27 @@ using TumPLATE.Infrastructure.Observability;
 using TumPLATE.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
-// Add services to the container.
+builder.Configuration.AddCommandLine(args);
+
 var appConfigurationConnectionString = builder.Configuration.GetConnectionString("AzureAppConfiguration");
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
+    var configurationPrefix = "apiname"; 
     options.Connect(appConfigurationConnectionString)
-        .Select("apiname:*")
-        .ConfigureRefresh(refreshOptions => refreshOptions.Register("apiname:sentinel", refreshAll: true))
+        .Select($"{configurationPrefix}:*")
+        .ConfigureRefresh(refreshOptions => refreshOptions.Register($"{configurationPrefix}:sentinel", refreshAll: true))
         .UseFeatureFlags(flagOptions =>
         {
-            flagOptions.Select("apiname:*", LabelFilter.Null);
+            flagOptions.Select($"{configurationPrefix}:*");
             flagOptions.CacheExpirationInterval = TimeSpan.FromSeconds(30);
         });
 });
-
 builder.Services.AddAzureAppConfiguration()
     .AddFeatureManagement()
     .AddFeatureFilter<PercentageFilter>()
     .AddFeatureFilter<HostingEnvironmentFilter>();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -41,7 +40,6 @@ builder.Services.AddMediatR(AppDomain.CurrentDomain.Load("TumPLATE.Application")
 builder.Services.AddApplicationHangfireBackgroundServices(useMemoryStorage:true);
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddKafkaIntegration();
-//builder.Services.AddHttpClient<IKafkaIntegration,KafkaHttpApiIntegration>();
 
 var app = builder.Build();
 
@@ -68,7 +66,7 @@ app.MapGet("/", async (IFeatureManager featureManager, IConfiguration configurat
     app.UseSwaggerUI();
 // }
 
-app.UseHangfireDashboard("/hangfire");
+app.UseHangfireDashboard();
 
 app.UseHttpsRedirection();
 

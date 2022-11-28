@@ -4,7 +4,6 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>1c2d1b4c-a324-4775-84d9-3fc6356d3c40</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
@@ -27,10 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\TumPLATE.Application\TumPLATE.Application.csproj" />
     <ProjectReference Include="..\TumPLATE.Infrastructure\TumPLATE.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="FeatureEndpoints" />
   </ItemGroup>
 
 </Project>

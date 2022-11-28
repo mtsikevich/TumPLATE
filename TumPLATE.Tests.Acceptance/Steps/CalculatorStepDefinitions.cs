@@ -1,4 +1,4 @@
-﻿namespace TumPLATE.Tests.Behaviour.Steps;
+﻿namespace TumPLATE.Tests.Acceptance.Steps;
 
 [Binding]
 public sealed class CalculatorStepDefinitions
