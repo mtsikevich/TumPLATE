@@ -8,6 +8,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["TumPLATE.Api/TumPLATE.Api.csproj", "TumPLATE.Api/"]
+COPY ["TumPLATE.Application/TumPLATE.Application.csproj", "TumPLATE.Application/"]
+COPY ["TumPLATE.Domain/TumPLATE.Domain.csproj", "TumPLATE.Domain/"]
+COPY ["TumPLATE.Infrastructure/TumPLATE.Infrastructure.csproj", "TumPLATE.Infrastructure/"]
 RUN dotnet restore "TumPLATE.Api/TumPLATE.Api.csproj"
 COPY . .
 WORKDIR "/src/TumPLATE.Api"
