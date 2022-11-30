@@ -8,12 +8,15 @@ namespace TumPLATE.Infrastructure.Persistence
 {
     public static class PersistenceExtensions
     {
-        public static void AddPersistence(this IServiceCollection services, IConfiguration configuration)
+        public static void AddSqlServerPersistence(this IServiceCollection services, string connectionString)
         {
+            if (string.IsNullOrWhiteSpace(connectionString))
+                throw new ArgumentNullException(nameof(connectionString), "The connection string is not provided");
+            
             services.AddScoped<ITreeRepository, TreeRepository>();
             services.AddDbContext<SampleDbContext>(options =>
             
-                options.UseSqlServer(configuration.GetConnectionString("sampleDb"))
+                options.UseSqlServer(connectionString)
             );
         }
     }
