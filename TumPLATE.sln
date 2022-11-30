@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TumPLATE.Tests.Unit", "TumP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TumPLATE.Tests.Acceptance", "TumPLATE.Tests.Acceptance\TumPLATE.Tests.Acceptance.csproj", "{B729AF15-31EA-43E6-BDCA-4640CB95BA29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TumPLATE.Api", "TumPLATE.Api\TumPLATE.Api.csproj", "{E320115F-1E95-49DC-AF44-EABD486A2D99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TumPLATE.Api", "TumPLATE.Api\TumPLATE.Api.csproj", "{E320115F-1E95-49DC-AF44-EABD486A2D99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
