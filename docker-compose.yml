@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  webapi:
+    build:
+      context: /TumPLATE.Api/
+      dockerfile: Dockerfile
+    ports:
+      - "5180:80"
+    environment:
+      - ConnectionStrings__AzureAppConfiguration=
+      - ConnectionStrings__DbConnectionString=Server=MyServer;Database=MyDB;User=usr;Password=Passw0rd!;
+    depends_on:
+      - db
+  
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    ports:
+      - "51433:1433"
+    environment:
+      SA_PASSWORD: Passw0rd!
+      ACCEPT_EULA: Y
