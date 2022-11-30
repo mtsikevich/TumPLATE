@@ -11,11 +11,10 @@ using TumPLATE.Infrastructure.Observability;
 using TumPLATE.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Configuration.AddCommandLine(args);
 
-var appConfigurationConnectionString = builder.Configuration.GetConnectionString("AzureAppConfiguration");
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
+    var appConfigurationConnectionString = builder.Configuration.GetConnectionString("AzureAppConfiguration");
     var configurationPrefix = "apiname"; 
     options.Connect(appConfigurationConnectionString)
         .Select($"{configurationPrefix}:*")
@@ -38,7 +37,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddObservability("TumPLATE", "1.0");
 builder.Services.AddMediatR(AppDomain.CurrentDomain.Load("TumPLATE.Application"));
 builder.Services.AddApplicationHangfireBackgroundServices(useMemoryStorage:true);
-builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddSqlServerPersistence(builder.Configuration.GetConnectionString("DbConnectionString"));
 builder.Services.AddKafkaIntegration();
 
 var app = builder.Build();
