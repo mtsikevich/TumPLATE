@@ -22,7 +22,7 @@ namespace TumPLATE.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TumPLATE.Domain.Tree.Fruit", b =>
+            modelBuilder.Entity("TumPLATE.Domain.TreeState.Fruit", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,7 +30,7 @@ namespace TumPLATE.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("State")
+                    b.Property<int>("Condition")
                         .HasColumnType("int");
 
                     b.Property<int?>("TreeId")
@@ -43,7 +43,7 @@ namespace TumPLATE.Infrastructure.Migrations
                     b.ToTable("Fruit");
                 });
 
-            modelBuilder.Entity("TumPLATE.Domain.Tree.Tree", b =>
+            modelBuilder.Entity("TumPLATE.Domain.TreeState.TreeState", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,14 +63,14 @@ namespace TumPLATE.Infrastructure.Migrations
                     b.ToTable("Trees");
                 });
 
-            modelBuilder.Entity("TumPLATE.Domain.Tree.Fruit", b =>
+            modelBuilder.Entity("TumPLATE.Domain.TreeState.Fruit", b =>
                 {
-                    b.HasOne("TumPLATE.Domain.Tree.Tree", null)
+                    b.HasOne("TumPLATE.Domain.TreeState.TreeState", null)
                         .WithMany("Fruits")
                         .HasForeignKey("TreeId");
                 });
 
-            modelBuilder.Entity("TumPLATE.Domain.Tree.Tree", b =>
+            modelBuilder.Entity("TumPLATE.Domain.TreeState.TreeState", b =>
                 {
                     b.Navigation("Fruits");
                 });

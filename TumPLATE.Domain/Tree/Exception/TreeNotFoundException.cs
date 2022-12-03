@@ -5,7 +5,7 @@ public class TreeNotFoundException: System.Exception
     public TreeNotFoundException() { }
 
     public TreeNotFoundException(int id)
-        :base($"Tree with id: {id} not found")
+        :base($"TreeState with id: {id} not found")
     {
     }
 }

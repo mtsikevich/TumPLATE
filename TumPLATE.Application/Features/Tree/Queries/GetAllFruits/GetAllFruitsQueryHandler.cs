@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using TumPLATE.Domain.Tree;
 
-namespace TumPLATE.Application.Features.Tree.GetAllFruits;
+namespace TumPLATE.Application.Features.Tree.Queries.GetAllFruits;
 
 public class GetAllFruitsQueryHandler : IRequestHandler<GetAllFruitsQuery, IReadOnlyList<Fruit>>
 {

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TumPLATE.Domain.Tree;
@@ -18,6 +19,18 @@ namespace TumPLATE.Infrastructure.Persistence
             
                 options.UseSqlServer(connectionString)
             );
+        }
+
+        public static void ApplyDataMigrations<TD>(this IApplicationBuilder app) 
+            where TD: DbContext
+        {
+            using var scope = app.ApplicationServices.CreateScope();
+            var dbContext = scope.ServiceProvider.GetService<TD>();
+
+            if (dbContext is null)
+                throw new Exception("DbContext not found");
+            
+            dbContext.Database.Migrate();
         }
     }
 }

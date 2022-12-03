@@ -4,10 +4,10 @@ using TumPLATE.Domain.Tree;
 
 namespace TumPLATE.Infrastructure.Persistence.TreePersistence;
 
-public class TreeEntityTypeConfiguration:IEntityTypeConfiguration<Tree>
+public class TreeEntityTypeConfiguration:IEntityTypeConfiguration<TreeState>
 {
-    public void Configure(EntityTypeBuilder<Tree> builder)
+    public void Configure(EntityTypeBuilder<TreeState> builder)
     {
-        builder.ToTable("");
+        builder.Property(t => t.Name).IsRequired();
     }
 }

@@ -7,15 +7,15 @@ services:
     ports:
       - "5180:80"
     environment:
-      - ConnectionStrings__AzureAppConfiguration=
-      - ConnectionStrings__DbConnectionString=Server=MyServer;Database=MyDB;User=usr;Password=Passw0rd!;
+      - ASPNETCORE_ConnectionStrings__AzureAppConfiguration=Endpoint=
+      - ASPNETCORE_ConnectionStrings__DbConnectionString=Server=mssql_server;Database=MyDB;User Id=SA;Password=Passw0rd!;TrustServerCertificate=true
     depends_on:
-      - db
+      - mssql_server
   
-  db:
+  mssql_server:
     image: "mcr.microsoft.com/mssql/server"
     ports:
-      - "51433:1433"
+      - "1433:1433"
     environment:
-      SA_PASSWORD: Passw0rd!
-      ACCEPT_EULA: Y
+      - SA_PASSWORD=Passw0rd!
+      - ACCEPT_EULA=Y

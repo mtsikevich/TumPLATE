@@ -20,7 +20,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Features\Tree\Commands" />
       <Folder Include="Features\Tree\Queries\GetFruit" />
     </ItemGroup>
 

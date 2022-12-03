@@ -1,6 +1,6 @@
 namespace TumPLATE.Domain.Tree;
 
-public enum FruitState
+public enum FruitCondition
 {
     Good,
     Rotten

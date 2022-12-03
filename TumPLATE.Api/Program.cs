@@ -37,12 +37,17 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddObservability("TumPLATE", "1.0");
 builder.Services.AddMediatR(AppDomain.CurrentDomain.Load("TumPLATE.Application"));
 builder.Services.AddApplicationHangfireBackgroundServices(useMemoryStorage:true);
-builder.Services.AddSqlServerPersistence(builder.Configuration.GetConnectionString("DbConnectionString"));
+
+var dbConnectionString = builder.Configuration.GetConnectionString("DbConnectionString");
+builder.Services.AddSqlServerPersistence(dbConnectionString);
 builder.Services.AddKafkaIntegration();
 
 var app = builder.Build();
 
 app.UseAzureAppConfiguration();
+
+app.ApplyDataMigrations<SampleDbContext>();
+
 app.MapGet("/", async (IFeatureManager featureManager, IConfiguration configuration) =>
 {
     var fruits = new List<string>();
