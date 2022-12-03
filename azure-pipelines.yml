@@ -1,0 +1,121 @@
+
+trigger:
+  branches:
+    include: 
+      - main
+      - master
+      - feature/*
+      - release/*
+      - production
+      - sit
+    exclude:
+      - user/*
+
+variables:
+  poolVmImage: 'ubuntu-latest'
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  isFeatureBuild: $[contains(variables['build.sourceBranch'], 'refs/heads/feature/')]
+
+stages:
+- stage: Build
+  jobs:
+  - job:
+    pool:
+      vmImage: $(poolVmImage)
+    steps:
+    - powershell: |
+        Write-Host $(isFeatureBuild)
+      displayName: 'feature build'
+      name: checkfeaturebranch
+
+    - task: UseDotNet@2
+      displayName: Get .NET 7
+      inputs:
+        version: '7.x'
+    
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: 'restore'
+        projects: $(solution)
+        feedsToUse: 'select'
+    
+    - task: DotNetCoreCLI@2
+      displayName: 'Test'
+      enabled: false
+      inputs:
+        command: 'test'
+        projects: $(solution)
+        arguments: '--configuration $(BuildConfiguration)'
+        publishTestResults: false
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish'
+      condition: not(variables.isFeatureBuild)
+      inputs:
+        command: 'publish'
+        projects: '$(solution)'
+        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+        publishWebProjects: true
+        zipAfterPublish: false 
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish build artefacts'
+      condition: not(variables.isFeatureBuild)
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'  
+
+- stage: DeployToDev
+  displayName: 'Deploy to Dev environment'
+  dependsOn: Build 
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+    - deployment: DeployToDev
+      displayName: 'Deploy to Dev'
+      pool: 
+        vmImage: $(poolVmImage)
+      environment: Development
+      strategy:
+       runOnce:
+         deploy:
+           steps:
+             - checkout: self
+             - script: echo 'deploying to development environment - $(Build.SourceBranch)'
+
+- stage: DeployToSIT
+  displayName: 'Deploy to SIT environment'
+  dependsOn: Build
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/sit'))
+  jobs:
+    - deployment: DeployToSIT
+      displayName: 'Deploy to SIT'
+      pool: 
+        vmImage: $(poolVmImage)
+      environment: SIT
+      strategy:
+       runOnce:
+         deploy:
+           steps:
+             - checkout: self
+             - script: echo deploying to System-Integration-Test - $(Build.SourceBranch)
+
+- stage: DeployToProd
+  displayName: 'Deploy to Prod environment'
+  dependsOn: Build
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/production'))
+  jobs:
+    - deployment: DeployToProd
+      displayName: 'Deploy to Prod'
+      pool: 
+        vmImage: $(poolVmImage)
+      environment: Production
+      strategy:
+       runOnce:
+         deploy:
+           steps:
+             - checkout: self
+             - script: echo deploying to Production - $(Build.SourceBranch)
