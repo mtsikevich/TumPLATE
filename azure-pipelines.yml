@@ -1,3 +1,4 @@
+name: Trunk-Based Development
 
 trigger:
   branches:
@@ -16,7 +17,6 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  isFeatureBuild: $[contains(variables['build.sourceBranch'], 'refs/heads/feature/')]
 
 stages:
 - stage: Build
@@ -25,35 +25,44 @@ stages:
     pool:
       vmImage: $(poolVmImage)
     steps:
-    - powershell: |
-        Write-Host $(isFeatureBuild)
-      displayName: 'feature build'
-      name: checkfeaturebranch
-
     - task: UseDotNet@2
-      displayName: Get .NET 7
+      displayName: Get .NET 7 SDK
       inputs:
+        packageType: sdk
         version: '7.x'
-    
+        installationPath: $(Agent.ToolsDirectory)/dotnet
+
     - task: DotNetCoreCLI@2
       displayName: Restore
       inputs:
-        command: 'restore'
+        command: restore
         projects: $(solution)
         feedsToUse: 'select'
-    
     - task: DotNetCoreCLI@2
-      displayName: 'Test'
-      enabled: false
+      displayName: Build
       inputs:
-        command: 'test'
+        command: build
         projects: $(solution)
+        feedsToUse: 'select'    
+    - task: DotNetCoreCLI@2
+      name: UnitTests
+      displayName: 'Run Unit Test'
+      inputs:
+        command: test
+        projects: '**/*.Tests.Unit.csproj'
         arguments: '--configuration $(BuildConfiguration)'
-        publishTestResults: false
+
+    - task: DotNetCoreCLI@2
+      name: AcceptanceTests
+      displayName: 'Run Acceptance Test'
+      inputs:
+        command: test
+        projects: '**/*.Tests.Acceptance.csproj'
+        arguments: '--configuration $(BuildConfiguration)'
 
     - task: DotNetCoreCLI@2
       displayName: 'Publish'
-      condition: not(variables.isFeatureBuild)
+      condition: not(contains(variables['build.sourceBranch'], 'refs/heads/feature/'))
       inputs:
         command: 'publish'
         projects: '$(solution)'
@@ -63,7 +72,7 @@ stages:
 
     - task: PublishBuildArtifacts@1
       displayName: 'Publish build artefacts'
-      condition: not(variables.isFeatureBuild)
+      condition: not(contains(variables['build.sourceBranch'], 'refs/heads/feature/'))
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
