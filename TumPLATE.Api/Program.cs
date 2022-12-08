@@ -38,15 +38,15 @@ builder.Services.AddObservability("TumPLATE", "1.0");
 builder.Services.AddMediatR(AppDomain.CurrentDomain.Load("TumPLATE.Application"));
 builder.Services.AddApplicationHangfireBackgroundServices(useMemoryStorage:true);
 
-var dbConnectionString = builder.Configuration.GetConnectionString("DbConnectionString");
-builder.Services.AddSqlPersistence(dbConnectionString);
+//var dbConnectionString = builder.Configuration.GetConnectionString("DbConnectionString");
+//builder.Services.AddSqlPersistence(dbConnectionString);
 builder.Services.AddKafkaIntegration();
 
 var app = builder.Build();
 
 app.UseAzureAppConfiguration();
 
-app.ApplyDataMigrations<SampleDbContext>();
+//app.ApplyDataMigrations<SampleDbContext>();
 
 app.MapGet("/", async (IFeatureManager featureManager, IConfiguration configuration) =>
 {

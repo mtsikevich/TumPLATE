@@ -1,7 +1,7 @@
 # initialize local development secrets
 dotnet user-secrets init --project ".\TumPLATE.Api\"
 
-# set azure-app-configuration connection-string 
+# set azure-app-configuration connection-string for feature management
 dotnet user-secrets set "ConnectionStrings:AzureAppConfiguration" "Endpoint=https://myconfigstorage.azconfig.io;Id=XQL5-ly-s0:wVsWyF/ak3yaBNaxqs9C;Secret=YE/gHu4HOwiX2ZKhRbgxddO2BSslMKsROEDvVCGtTx8=" --project ".\TumPLATE.Api\"
 
 # start application on "Development" environment
