@@ -6,8 +6,8 @@ namespace TumPLATE.Application.Features.BackgroundJobs;
 
 public static class KafkaBackgroundJobs
 {
-    public static void StartPollingTheKafkaTopic(this IApplicationBuilder app,string topic)
+    public static void StartPollingTheKafkaTopic(this IApplicationBuilder app,string topic, string jobName)
     {
-        RecurringJob.AddOrUpdate<IKafkaIntegration>("Polling Kafka",ks => ks.SubscribeAsync(topic), "*/5 * * * * *");
+        RecurringJob.AddOrUpdate<IKafkaIntegration>(jobName,ks => ks.SubscribeAsync(topic), "*/5 * * * * *");
     }
 }

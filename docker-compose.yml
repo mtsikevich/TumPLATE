@@ -1,17 +1,19 @@
-version: "3.9"
+version: '3.4'
+
 services:
-  webapi:
+  tumplate.api:
+    image: tumplateapi
     build:
-      context: /TumPLATE.Api/
-      dockerfile: Dockerfile
-    ports:
-      - "5180:80"
+      context: .
+      dockerfile: TumPLATE.Api/Dockerfile
     environment:
-      - ASPNETCORE_ConnectionStrings__AzureAppConfiguration=Endpoint=
-      - ASPNETCORE_ConnectionStrings__DbConnectionString=Server=mssql_server;Database=MyDB;User Id=SA;Password=Passw0rd!;TrustServerCertificate=true
+      - ASPNETCORE_ConnectionStrings__AzureAppConfiguration=${AzureAppConfiguration}
+      - ASPNETCORE_ConnectionStrings__DbConnectionString=${DbConnectionString}
+    ports:
+      - "7357:80"
     depends_on:
       - mssql_server
-  
+
   mssql_server:
     image: "mcr.microsoft.com/mssql/server"
     ports:

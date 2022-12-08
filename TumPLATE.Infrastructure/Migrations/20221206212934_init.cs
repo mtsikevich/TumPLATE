@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TumPLATE.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,23 +31,23 @@ namespace TumPLATE.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    State = table.Column<int>(type: "int", nullable: false),
-                    TreeId = table.Column<int>(type: "int", nullable: true)
+                    Condition = table.Column<int>(type: "int", nullable: false),
+                    TreeStateId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Fruit", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Fruit_Trees_TreeId",
-                        column: x => x.TreeId,
+                        name: "FK_Fruit_Trees_TreeStateId",
+                        column: x => x.TreeStateId,
                         principalTable: "Trees",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Fruit_TreeId",
+                name: "IX_Fruit_TreeStateId",
                 table: "Fruit",
-                column: "TreeId");
+                column: "TreeStateId");
         }
 
         /// <inheritdoc />

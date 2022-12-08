@@ -1,7 +1,5 @@
 using System.Diagnostics;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.FeatureManagement.Mvc;

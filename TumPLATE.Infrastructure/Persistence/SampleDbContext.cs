@@ -7,7 +7,7 @@ public class SampleDbContext: DbContext
 {
     public DbSet<TreeState> Trees { get; set; }
     
-    public SampleDbContext(DbContextOptions options) 
+    public SampleDbContext(DbContextOptions<SampleDbContext> options) 
         : base(options)
     {
     }

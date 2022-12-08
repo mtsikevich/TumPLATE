@@ -1,8 +1,10 @@
+
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
 
-namespace TumPLATE.Infrastructure.Extras.FeatureFlags;
+namespace TumPLATE.Infrastructure.FeatureFlagFilters;
 
 [FilterAlias("HostingEnvironment")]
 public class HostingEnvironmentFilter: IFeatureFilter
